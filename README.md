@@ -1,7 +1,7 @@
 ## A Look into Parsing
-<img width="308" height="209" alt="image" src="https://github.com/user-attachments/assets/f877eab5-ad92-4b30-83b6-63901f0e7ce2" />
-Which then gets converted to this
-<img width="593" height="559" alt="image" src="https://github.com/user-attachments/assets/64585eba-aa9e-49dd-a24b-7e80b0b99beb" />
+<img width="308" height="209" alt="image" src="https://github.com/user-attachments/assets/f877eab5-ad92-4b30-83b6-63901f0e7ce2" /> <br>
+Which then gets converted to this <br>
+<img width="593" height="559" alt="image" src="https://github.com/user-attachments/assets/64585eba-aa9e-49dd-a24b-7e80b0b99beb" /> <br>
 
 ## How to Run DocuParse
 
