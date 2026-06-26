@@ -1,0 +1,228 @@
+html, body
+{
+    height: 100vh;
+    margin: 0;
+    max-width: 100%;
+}
+
+body
+{
+    background-color: #CFE4FF;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+#SettingsButton
+{
+    background-color: #B8F5ED;
+    margin-right: 25px;
+    margin-left: 1400px;
+    margin-top: 25px;
+    height: 50px;
+    width: 500px;
+    font-size: x-large;
+}
+
+#BackButton
+{
+    border-radius: 50%;
+    height: 60px;
+    width: 110px;
+    background-color: #B8F5ED;
+    margin-left: 20px;
+    margin-top: -50px;
+}
+
+#InputDiv
+{
+    text-align: center;
+    background-color: #B8F5ED;
+    width: 500px;
+    height: 500px;
+    margin-top: 50px;
+    margin-left: 20px;
+}
+
+#TextPaste
+{
+    width: 470px;
+    height: 400px;
+    resize: none;
+}
+
+input
+{
+    background-color: #B8F5ED;
+    font-size: x-large;
+    width: 250px;
+}
+
+#BrowseButton
+{
+    background-color: #B8F5ED;
+    width: 110px;
+    font-size: x-large;
+}
+
+#UploadButton
+{
+    background-color: #B8F5ED;
+    width: 250px;
+    font-size: x-large;
+}
+
+#ManageDocumentsButton
+{
+    margin-left: 25px;
+    font-size: x-large;
+    background-color: #B8F5ED;
+    width: 250px;
+    margin-top: 0px;
+}
+
+#ResultsDiv
+{
+    text-align: center;
+    background-color: #B8F5ED;
+    width: 500px;
+    height: 500px;
+    margin-top: -485px;
+    margin-left: 1400px;
+}
+
+#Result
+{
+    width: 470px;
+    height: 400px;
+    resize: none;
+}
+
+#TextToSpeach
+{
+    font-size: x-large;
+    background-color: #B8F5ED;
+    width: 250px;
+    margin-left: 1500px;
+}
+
+#TextToSpeach:hover
+{
+    background-color: #4cc9b8;
+    transition: 0.7s;
+}
+
+#UploadButton:hover
+{
+    background-color: #4cc9b8;
+    transition: 0.7s;
+}
+
+#BackButton:hover
+{
+    background-color: #4cc9b8;
+    transition: 0.7s;
+}
+
+#SettingsButton:hover
+{
+    background-color: #4cc9b8;
+    transition: 0.7s;
+}
+
+#SubmitButton:hover
+{
+    background-color: #4cc9b8;
+    transition: 0.7s;
+}
+
+#ManageDocumentsButton:hover
+{
+    background-color: #4cc9b8;
+    transition: 0.7s;
+}
+
+#BrowseButton:hover
+{
+    background-color: #4cc9b8;
+    transition: 0.7s;
+}
+
+
+/* Popup Modal CSS code */
+
+/* Sets the style for the entire modal overlay */
+.ModalOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+/* Sets the style for the box the buttons and modal text will display in */
+.ModalBox {
+    background: white;
+    padding: 24px 28px;
+    border-radius: 12px;
+    width: 320px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+    animation: fadeIn 0.2s ease;
+    /* Sets the colour for the top of the popup, would use ModalBox.Success on SavedDocumentsPage.Css */
+    border-top: 5px solid #b71c1c;
+}
+
+.ModalHeader {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+/* Alligns the modal actions buttons */
+.ModalActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+/* Style for cancel action button */
+.ModalCancel {
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background: #f5f5f5;
+    cursor: pointer;
+}
+
+/* Style for confirm action button */
+.ModalConfirm {
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: none;
+    /* Is pink to show if there is a major issue, if things are working you will never see it */
+    background: #d32f8f;
+    color: white;
+    cursor: pointer;
+}
+
+/* Hover effect for success popup modals */
+.ModalConfirm:hover {
+    background: #27ae60;
+}
+
+
+/* This is needed so the popup modal is hidden by default */
+.hidden {
+    display: none;
+}
+
+/* Fade in effect! Very important for the modal box! */
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95);}
+    to {opacity: 1; transform: scale(1);}
+}
+
+

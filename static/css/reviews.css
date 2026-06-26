@@ -1,0 +1,401 @@
+/* Main page background */
+body {
+    background: linear-gradient(to bottom, #ffffff 0%, #f8f3df 40%, #e6c77a 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+}
+
+/* Main container */
+
+.container {
+    background: #ffffff;
+    width: 100%;
+    max-width: 1400px;
+    padding: 30px;
+}
+
+/* Reviews page layout */
+#reviewsPage {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* Header section */
+
+.reviews-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #f0f0f0;
+    position: relative;
+}
+
+/* Logo container */
+.reviews-header .logo {
+    display: flex;
+    align-items: center;
+}
+
+/* Logo link */
+.reviews-header .logo a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+/* Logo image */
+.reviews-header .logo img {
+    height: 65px;
+    width: auto;
+    object-fit: contain;
+    border: 2px solid #ddc113;
+    border-radius: 10px;
+    padding: 4px;
+    background: #f5f9ff;
+    transition: 0.25s ease;
+}
+
+/* Logo hover effect */
+.reviews-header .logo img:hover {
+    transform: scale(1.05);
+}
+
+/* Reviews page title */
+.reviews-header h2 {
+    font-size: 24px;
+    font-weight: 800;
+    color: black;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Header buttons */
+
+.header-actions button {
+    background-color: #ddc113;
+    color: white;
+    border: none;
+    padding: 10px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.25s ease;
+}
+
+/* Button hover effect */
+.header-actions button:hover {
+    transform: translateY(-2px);
+}
+
+/* Active button */
+.header-actions button.active {
+    background: #333;
+    color: #fff;
+    transform: scale(1.05);
+}
+
+/* Review summary section */
+
+.reviews-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f5f9ff;
+    border: 2px solid #ddc113;
+    border-radius: 16px;
+    padding: 20px;
+    gap: 30px;
+}
+
+/* Average rating number */
+.average h1 {
+    font-size: 48px;
+    margin: 0;
+    color: #ddc113;
+}
+
+/* Average rating text */
+.average p {
+    margin: 5px 0 0;
+    color: #666;
+}
+
+/* Main page layout */
+
+.reviews-main {
+    font-family: sans-serif;
+    display: flex;
+    gap: 30px;
+    align-items: stretch;
+}
+
+/* Left and right sections */
+.left-panel,
+.right-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Scrollable reviews section */
+.right-panel {
+    max-height: 600px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+/* Scrollbar width */
+.right-panel::-webkit-scrollbar {
+    width: 6px;
+}
+
+/* Scrollbar colour */
+.right-panel::-webkit-scrollbar-thumb {
+    background: #ddc113;
+    border-radius: 10px;
+}
+
+/* Review form */
+
+.review-form {
+    background: #f5f9ff;
+    border: 2px solid #ddc113;
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+}
+
+/* Form title */
+
+.form-mode-title {
+    font-family: "Segoe UI", sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    color: #ddc113;
+}
+
+/* Question mode styling */
+.review-form.question-mode {
+    border: 2px solid #4a90e2;
+    background: #eef6ff;
+}
+
+/* Form inputs */
+.review-form input,
+.review-form textarea,
+.review-form select {
+    border: 2px solid #ddc113;
+    border-radius: 10px;
+    padding: 10px;
+    font-family: sans-serif;
+}
+
+/* Inputs used in question mode */
+.review-form.question-mode input,
+.review-form.question-mode textarea {
+    border-color: #4a90e2;
+}
+
+/* Submit button */
+
+#submitReview {
+    background: #ddc113;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* Submit button hover effect */
+#submitReview:hover {
+    transform: translateY(-2px);
+}
+
+/* Star icons */
+
+.star {
+    width: 20px;
+    height: 20px;
+    fill: #e0e0e0;
+}
+
+/* Filled star */
+.star.filled {
+    fill: #ddc113;
+}
+
+/* Half-filled star */
+.star.half {
+    fill: url(#halfGradient);
+}
+
+/* Star rating container */
+.star-input {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+/* Review cards */
+
+.review-card {
+    background: #f5f9ff;
+    border: 2px solid #ddc113;
+    border-radius: 16px;
+    padding: 15px;
+    margin-top: 15px;
+    transition: 0.25s ease;
+}
+
+/* Review card hover effect */
+.review-card:hover {
+    transform: translateY(-3px);
+}
+
+/* Review card header */
+.review-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Reviewer's name */
+.review-name {
+    font-weight: 600;
+    color: #333;
+}
+
+/* Review rating stars */
+.review-rating {
+    display: flex;
+    gap: 4px;
+}
+
+/* Question card */
+
+.question-card {
+    border: 2px dashed #4a90e2;
+    background: #eef6ff;
+}
+
+/* Question label */
+.question-label {
+    font-size: 14px;
+    font-weight: 700;
+    color: #4a90e2;
+}
+
+/* Answers section */
+
+.answers {
+    margin-top: 10px;
+    padding-left: 10px;
+    border-left: 3px solid #4a90e2;
+}
+
+/* Individual answer */
+.answer {
+    margin-top: 6px;
+    font-size: 14px;
+}
+
+/* Answer button */
+.answer-btn {
+    margin-top: 10px;
+    background: #4a90e2;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* Answer form */
+.answer-box {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+/* Answer input fields */
+.answer-box input,
+.answer-box textarea {
+    border: 2px solid #4a90e2;
+    border-radius: 6px;
+    padding: 6px;
+}
+
+/* Submit answer button */
+.submit-answer {
+    background: #4a90e2;
+    color: white;
+    border: none;
+    padding: 6px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* Empty reviews message */
+
+.reviews-empty {
+    background: #f5f9ff;
+    border: 2px dashed #ddc113;
+    border-radius: 16px;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+    margin-top: 15px;
+    text-align: center;
+}
+
+/* Empty message heading */
+.reviews-empty p {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+/* Empty message description */
+.reviews-empty span {
+    font-size: 14px;
+    color: #777;
+}
+
+/* Mobile layout */
+
+@media (max-width: 900px) {
+    .reviews-main {
+        flex-direction: column;
+    }
+
+    .right-panel {
+        max-height: none;
+    }
+
+    .reviews-header h2 {
+        position: static;
+        transform: none;
+    }
+}
+
+/* font family for other elements so we don't have to assign the font family for each individual element */
+h1, h2, h3{
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+/*Set the paragraphs to the same font as the other web pages to make it look more uniform throughout*/
+p{
+    font-family: sans-serif;
+}

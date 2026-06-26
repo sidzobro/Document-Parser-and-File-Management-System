@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- Defines the character encoding standard for the webpage -->
+    <meta charset="UTF-8">
+
+    <!-- Title displayed on the browser tab -->
+    <title>Customer Reviews</title>
+
+    <!-- Connects the external CSS file which is responsible for styling the reviews page -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/reviews.css') }}">
+
+</head>
+
+<body>
+
+    <!-- Used for creating reusable graphic effects -->
+    <!-- In this case, a half-filled star for review ratings -->
+    <svg width="0" height="0">
+
+        <defs>
+
+            <!-- Defines a custom gradient named "halfGradient" -->
+            <linearGradient id="halfGradient">
+
+                <!-- First half of the star appears gold -->
+                <stop offset="50%" stop-color="#ddc113"/>
+
+                <!-- Second half of the star will appear grey -->
+                <stop offset="50%" stop-color="#e0e0e0"/>
+
+            </linearGradient>
+
+        </defs>
+
+    </svg>
+
+    <!-- Main wrapper container for the full reviews page -->
+    <div class="container">
+
+        <!-- Main reviews page section -->
+        <div id="reviewsPage">
+
+            <!-- Header section -->
+            <div class="reviews-header">
+
+                <!-- Website logo section -->
+                <div class="logo">
+
+                    <!-- Clicking logo redirects user back to main menu -->
+                    <a href="/sid">
+
+                        <!-- Displays the system logo -->
+                        <img src="static/img/Document_Parser_Logo.jpeg" alt="Logo">
+
+                    </a>
+
+                </div>
+
+                <!-- Main page heading -->
+                <h2>Customer Reviews</h2>
+
+                <!-- Top action buttons -->
+                <div class="header-actions">
+
+                    <!-- Button used to switch page into review writing mode -->
+                    <button id="leaveReviewBtn" class="active">
+                        Write a review
+                    </button>
+
+                    <!-- Button used to switch page into question mode -->
+                    <button id="askQuestionBtn">
+                        Ask a question
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- Review summary section -->
+            <div class="reviews-summary">
+
+                <!-- Displays overall rating information -->
+                <div class="average">
+
+                    <!-- Average review rating value dynamically inserted by JavaScript -->
+                    <h1 id="avgRating"></h1>
+
+                    <!-- Total number of reviews dynamically inserted -->
+                    <p id="reviewCount"></p>
+
+                </div>
+
+                <!-- Section where rating bars (e.g. 5-star breakdown) are dynamically generated -->
+                <div class="bars" id="ratingBars"></div>
+
+            </div>
+
+            <!-- Main content layout -->
+            <div class="reviews-main">
+
+                <!-- Left panel: input form -->
+                <div class="left-panel">
+
+                    <!-- Review / Question form container -->
+                    <div class="review-form">
+
+                        <!-- Dynamic form title -->
+                        <!-- Changes depending on selected mode -->
+                        <div id="formModeTitle" class="form-mode-title">
+
+                            <!-- Default form mode -->
+                            <h2>Write a Review</h2>
+
+                        </div>
+
+                        <!-- Input field for user's name -->
+                        <input type="text" id="reviewName" placeholder="Your name">
+
+                        <!-- Star rating input -->
+
+                        <!-- Empty container where JavaScript dynamically creates clickable stars -->
+                        <div id="starInput" class="star-input"></div>
+
+                        <!-- Hidden input used to store selected star rating value -->
+                        <!-- Default value starts at 0 -->
+                        <input type="hidden" id="reviewRating" value="0">
+
+                        <!-- Text area where user writes review or question -->
+                        <textarea id="reviewText" placeholder="Write your review or question..."></textarea>
+
+                        <!-- Submit button for sending review/question -->
+                        <button id="submitReview">
+                            Submit
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <!-- Right Panel: output display -->
+                <div class="right-panel">
+
+                    <!-- Section title -->
+                    <h3 class="reviews-title">
+                        Customer Reviews & Questions
+                    </h3>
+
+                    <!-- Dynamic container where submitted reviews/questions are displayed -->
+                    <div class="reviews-list" id="reviewsList"></div>
+
+                    <!-- Empty state message shown when there are no reviews -->
+                    <div class="reviews-empty" id="reviewsEmpty">
+
+                        <!-- Main empty message -->
+                        <p>No reviews yet</p>
+
+                        <!-- Message that encourages user interaction -->
+                        <span>
+                            Be the first to share your experience or ask a question
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+<!-- Apply accessibility and language settings -->
+<script src="{{ url_for('static', filename='js/applySettings.js') }}"></script>
+
+<!-- Reviews page JavaScript -->
+<script src="{{ url_for('static', filename='js/reviews.js') }}"></script>
+
+</body>
+</html>

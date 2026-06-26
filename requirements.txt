@@ -1,0 +1,9 @@
+flask
+bcrypt
+pytesseract
+pillow
+reportlab
+opencv-python
+numpy
+pandas
+mysql-connector-python

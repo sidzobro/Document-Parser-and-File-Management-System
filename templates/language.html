@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Language</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sid_style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <header class="header">
+
+        <h1 class="site-logo">
+            Language
+        </h1>
+
+        <div class="top-buttons">
+
+            <button class="nav" onclick="location.href='/sid'">
+                <i class="fa-solid fa-arrow-left icon"></i>
+                <span id="backBtn">Back</span>
+            </button>
+
+            <button class="nav" onclick="location.href='/accounts'">
+                <i class="fa-solid fa-user icon"></i>
+                <span id="navAccount">Account</span>
+            </button>
+
+            <button class="nav" onclick="location.href='/settings'">
+                <i class="fa-solid fa-gear icon"></i>
+                <span id="navSettings">Settings</span>
+            </button>
+
+            <button class="nav" onclick="location.href='/sid'">
+                <i class="fa-solid fa-house icon"></i>
+                <span id="navMain">Main Menu</span>
+            </button>
+
+        </div>
+
+    </header>
+
+    <div class="main-content">
+
+        <div class="left-section">
+
+            <div class="parse-box">
+                Select Language
+            </div>
+
+            <div class="bottom-row">
+
+                <div class="saved-box" style="width:100%; padding:30px;">
+
+                    <div class="row" style="display:flex; align-items:center; margin-bottom:20px;">
+
+                        <span class="label"
+                              id="labelLanguage"
+                              style="min-width:140px; margin-right:20px;">
+                            Language
+                        </span>
+
+                        <select id="languageSelect"
+                                style="
+                                    flex:1;
+                                    padding:12px;
+                                    border-radius:8px;
+                                    border:2px solid #ddc113;
+                                    font-size:16px;
+                                ">
+
+                            <option value="en">English</option>
+                            <option value="es">Spanish</option>
+                            <option value="fr">French</option>
+                            <option value="de">German</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="reviews">
+            Language Settings
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+const languageSelect = document.getElementById("languageSelect");
+
+languageSelect.value = localStorage.getItem("language") || "en";
+
+languageSelect.addEventListener("change", function () {
+    localStorage.setItem("language", this.value);
+    location.reload();
+});
+</script>
+
+<script src="{{ url_for('static', filename='js/applySettings.js') }}"></script>
+
+</body>
+</html>

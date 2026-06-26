@@ -1,0 +1,1312 @@
+/* Ask for help here, was reccomended to stop padding causing unexpected overflow issues */
+* {
+    box-sizing: border-box;
+}
+
+/* Helps make the page more responcive to multiple different types of sized screens */
+html, body {
+    height: 100vh;
+    margin: 0;
+    min-width: max(700px, 50vw);
+}
+
+/* Helps organise the page and stop overflow issues, also sets font and background */
+body {
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    background: linear-gradient(to bottom,#ffffff 0%,#f8f3df 40%,#e6c77a 100%);
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* Helps elements fit into their spaces */
+.HeaderBar,
+.Footer {
+    flex-shrink: 0;
+}
+
+/* Global attribute for hiding everything, if this does not exist then there may be issues with the popup modals */
+.hidden {
+    display: none !important;
+}
+
+/* ------------Container CSS from Sids page --------------- */
+/* This will be used to make everything look the same as everyone elses page */
+.container {
+    background: linear-gradient(to bottom,#ffffff 0%,#f8f3df 40%,#e6c77a 100%);
+    width: 95%;
+    max-width: 1400px;
+    padding: 50px;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+
+/* ----------------- Header Bar Styles ----------------- */
+
+/* Sets the overall style and height of the  header bar */
+.HeaderBar {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 20px;
+}                
+
+.PageTitle {
+    text-align: center;
+}
+
+.LeftHeader {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.RightHeader {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    justify-self: end;
+}
+
+/* CSS From Sids Webpage, for navigation buttons to other webpages */
+
+/* TOP BUTTONS */
+.top-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.top-buttons button {
+    display: flex;
+    align-items: center;
+    background-color: #ddc113;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    gap: 8px;
+    margin-left: 15px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Hover effect for navigation buttons */
+.top-buttons button:hover {
+    background-color: #ddc113;
+    transform: translateY(-2px);
+}
+
+/* #########Search Bar and filter bar Div########## */
+
+/* Manages the search bar */
+.SearchBarContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    background-color: #ffffff;
+    padding: 12px 18px;
+    border-radius: 14px;
+    border: 1.5px solid #ddc113;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    transition: all 0.25s ease;
+    z-index: 2000;
+    height: 60px;
+}
+
+/* Manages the upload bar - NOTE Both upload and search had to be seperated to fix the filter button */
+.UploadDocumentsContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    background-color: #ffffff;
+    padding: 12px 18px;
+    border-radius: 14px;
+    border: 1.5px solid #ddc113;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    transition: all 0.25s ease;
+    z-index: 1;
+    height: 60px;
+}
+
+/* Card hover Lift */
+.SearchBarContainer:hover, .UploadDocumentsContainer:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Sets the text style for the search bar */
+#SearchBar {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+}
+
+/* Sets the style for the search button (The magnifying glass) */
+#SearchButton {
+    padding: 8px 12px;
+    border: none;
+    background-color: #ddc113;
+    color: white;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+/* Makes the button hover and change colour */
+#SearchButton:hover {
+    background-color: #c5ab11;;
+    transform: translateY(-1px);
+}
+
+/* Sets the style for the filter button */
+#FilterButton {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    background-color: #ddc113;
+    color: white;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+/* Makes the filter button hover and change colour */
+#FilterButton:hover {
+    background-color: #c5ab11;
+    transform: translateY(-1px);
+}
+
+/* Sets the style for the filter button and the dropdown it will create when clicked */
+.FilterDropdown {
+    position: absolute;
+    top: 120%;
+    right: 0;
+    background-color: white;
+    padding: 12px 18px;
+    border-radius: 12px;
+    border: 2px solid #ddc113;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    display: none;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 160px;
+    z-index: 50000;
+}
+
+/* Sets the style for the label that will show when the filter button is pressed */
+.FilterDropdown label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* Makes the label show when the filter button is pressed */
+.FilterDropdown.show {
+    display: flex;
+}
+
+/* Sets all the filter options to a column */
+.FilterColumns {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* text-align: center; */
+    align-items: stretch;
+}
+
+/* Sets the style for the filter groupings and the divider between them*/
+.FilterGroup {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 0 20px;
+    border-right: 2px solid black;
+}
+
+/* Makes sure the line border does not display on the last group */
+.FilterGroup:last-child {
+    border-right: none;
+}
+
+/* Helps organise the layout of the filter options and makes everything line up */
+.FilterGroup label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+}
+
+/* Makes it so the checkbox gets a pointer as well */
+.FilterGroup input[type="checkbox"] {
+    cursor: pointer;
+}
+
+/* Sets the text style for the filter title */
+.FilterTitle {
+    font-weight: bold;
+    margin-bottom: 8px;
+    pointer-events: none;
+}
+
+/* ###########Upload Files Div Styles############# */
+
+/* Sets the stle for  the choose files button */
+.ChooseFilesBtn {
+    padding: 8px 14px;
+    background-color: #ddc113;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.25s ease;
+    /* border: 2px solid #000; */
+}
+
+/* Changes the colour and makes the button lift when hovered on */
+.ChooseFilesBtn:hover {
+    background-color: #c5ab11;
+    transform: translateY(-1px);
+}
+
+/* Makes the button drop down when clicked */
+.ChooseFilesBtn:active {
+    transform: translate(0);
+}
+
+/* Styles the upload button */
+.UploadBtn {
+    padding: 8px 14px;
+    background-color: #ddc113;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: all 0.25s ease;
+    border: none;
+    outline: none;
+}
+
+/* Changes the colour and makes the button lift when hovered on */
+.UploadBtn:hover {
+    background-color: #c5ab11;
+    transform: translateY(-1px);
+}
+
+/* Makes the button drop down when clicked */
+.UploadBtn:active {
+    transform: translate(0);
+}
+
+/* Stylises the text that prompts a user to choose files to upload */
+.UploadPrompt {
+    font-size: 14px;
+    color: #555;
+}
+
+/* Sets the style for the text that displays how many files have been selected to be uploaded */
+#fileNameDisplay {
+    font-size: 14px;
+    color: #555;
+}
+
+/* ----------------- End of Header Bar Styles ----------------- */
+
+/* ----------------- Documents Section Styles ----------------- */
+
+/* Sets the style for the documents section */
+.DocumentsSection {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: stretch;
+    padding: 20px 30px;    
+    min-height: 0; /*Fix for scrollbar dissapearing*/
+}
+
+/* Sets the stle for the SavedDocuments label */
+.SavedDocuments {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    /* overflow: hidden; */
+}
+
+/* Sets the style for the header label */
+.SavedDocumentsHeader {
+    padding: 15px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+/* Sets the style for the controls container */
+.SavedDocumentControls {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+/* Sets the style for the text within .SavedDocumentsHeader */
+.SavedDocsTitle {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: white;
+}
+
+/* Sets the allignment of both the folder and saved documents divs */
+.SavedStuff {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+/* ############ Folder List Section #################*/
+
+/* Manages the whole style for the folder section and its children */
+.FolderSection {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 220px;
+    border-right: 2px solid rgba(0, 0, 0, 0.2);
+    min-height: 0;
+}
+
+/* Sets the style for the Upper part of the folder section */
+.FolderTop {
+    flex: 0 0 auto;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Sets the style for the create folder button */
+.CreateFolderBtn {
+    padding: 8px 12px;
+    border-radius: 6px;
+    width: 80%;
+    background-color: #ddc113;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    outline: none;
+}
+
+/* Hover effect for create folder btn */
+.CreateFolderBtn:hover {
+    background-color: #c5ab11;
+    transform: translateY(-1px);
+}
+
+/* Sets the style for the middle section of the folders, where the folders will be displayed */
+.FolderList {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 12px 8px;
+}
+
+/* Sets the style for the items within folder list */
+.FolderItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 10px;
+    border-radius: 8px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: all 0.2 ease;
+    position: relative;
+}
+
+/* Hover effect for folder items */
+.FolderItem:hover {
+    background-color: #d0f0ea;
+}
+
+/* Sets the folder icon and name */
+.FolderInfo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.FolderInfo i {
+    font-size: 24px;
+}
+
+.FolderName {
+    font-weight: 600;
+}
+
+/* Stye to make sure the text input the user has when renaming something doesn't make the folder section bigger */
+.FolderRenameInput {
+    width: 100%;
+    max-width: 140px;
+    box-sizing: border-box;
+}
+
+/* Kebab button for folder */
+.FolderKebab {
+    font-size: 20px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 6px 8px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.FolderKebab i {
+    font-size: 18px;
+    pointer-events: none;
+}
+
+.FolderKebab:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+}
+
+/* Sets the style for the folder menu (FolderKebab) */
+.FolderMenu {
+    position: absolute;
+    right: 10px;
+    top: 40px;
+    background: white;
+    border-radius: 6px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+/* Makes the options in the folder menu have a pointer */
+.FolderOption {
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+/* Makes the colour of the folder options change when hovered over */
+.FolderOption:hover {
+    background: #eee;
+}
+
+.FolderItem.favorited .FolderIcon {
+    color: gold;
+}
+
+/* Sets the style for the bottom part of the folder section */
+.FolderBottom {
+    flex: 0 0 auto;
+    padding: 6px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.FolderBottom i {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+}
+
+/* Sets the style for the recycle bin */
+.RecycleBin {
+    padding: 6px 10px;
+    border-radius: 6px;
+    width: 80%;
+    /* border: 2px solid black; */
+    background-color: #ddc113;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+.RecycleBin i {
+    font-size: 20px;
+}
+
+/* Sets the darkening effect for recyclebin */
+.RecycleBin:hover {
+    background-color: #d32f2f;
+    transform: translateY(-1px);
+}
+
+/* ############ Documents List Section ##############*/
+
+/* Scrollable documents list */
+.DocumentList {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;/*To prevent content from being hidden behind the scrollbar */
+    min-height: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+/* Adds an empty state version for documents list when nothing exists */
+.EmptyDocumentList {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: black;
+    margin-top: 50px;
+}
+
+.EmptyDocumentList i {
+    font-size: 48px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+/* Sets the style for the uploaded document items */
+.DocumentItem {
+    align-items: center;
+    background-color: white;
+    padding: 15px;
+    border-radius: 12px;
+    border: 2px solid #ddc113;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    /* Check this, may be a better % method to use rather than a set px size? */
+    height: 150px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    transition: all 0.25s ease;
+    z-index: auto;
+}
+
+/* To help the document item menu to not be hidden behind other files */
+.DocumentItem.menu-open {
+    z-index: 9999;
+}
+
+/* Makes the document item box lift when hovered over */
+.DocumentItem:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+    z-index: 1;
+}
+
+/* Sets tje style for a selected file */
+.DocumentItem.selected {
+    background-color: #e0e0e0;
+    border: 1px solid #999;
+}
+
+/* Sets the size of the document icon */
+.DocumentIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    font-size: 48px;
+    margin-bottom: 10px;
+    color: gold;
+}
+
+/* Sets the style for the document name */
+.DocumentInfo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* Sets the style for the top left fav icon */
+.FavIcon, .KebabIcon {
+    position: absolute;
+    top: 10px;
+    font-size: 26px;
+    color: black;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 8px;
+    border-radius: 8px;
+    z-index: 2;
+}
+
+ .KebabIcon:hover {
+    background: rgba(0, 0, 0, 0.12);
+ }
+
+/* Makes the fav icon hover */
+.FavIcon:hover {
+    transform: scale(1.2);
+    transition: transform 0.15s ease;
+}
+
+/* Sets the location for the top left fav icon */
+.FavIcon {
+    left: 8px;
+}
+
+/* Sets the location for the top right kebab icon */
+.KebabIcon {
+    right: 8px;
+}
+
+/* Sets the style for the document name */
+.DocumentName {
+    font-size: 16px;
+    font-weight: 600;
+    word-break: break-word;
+}
+
+/* Sets the location of the document action buttons */
+.DocumentActions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    align-items: center;
+}
+
+/* Sets the style for the document action buttons */
+.DocumentActions button {
+    border: none;
+    padding: 6px 10px;
+    font-size: 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: #f0f0f0;
+}
+
+/* Changes the background color of the action buttons when hovered over */
+.DocumentActions button:hover {
+    background-color: #ddd;
+}
+
+/* Sets the style for the scrollbar within the saved documents label */
+.DocumentList::-webkit-scrollbar {
+    width: 8px;
+}
+
+.DocumentList::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-radius: 8px;
+}
+
+.DocumentList::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 8px;
+}
+
+.DocumentList::-webkit-scrollbar-thumb:hover {
+    background: #bbb;
+}
+
+/* Styles for the document kebab menu */
+.DocumentMenu {
+    top: 40px;
+    right: 10px;
+    background: white;
+    border-radius: 6px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    z-index: 9999;
+    overflow: hidden;
+    position: absolute;
+    max-width: 100px;
+    max-height: 140px;
+    z-index: 10000;
+    overflow-y: auto;
+}
+
+/* Sets the style for the document menu scrollbar */
+.DocumentMenu::-webkit-scrollbar {
+    width: 6px;
+}
+
+.DocumentMenu::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 6px;
+}
+
+/* Sets the style for the document options */
+.DocOption {
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+/* Highlight when hovered over */
+.DocOption:hover {
+    background: #eee;
+}
+
+/* ################ Alert Modal Styles ################ */
+
+/* Sets the style for the entire modal overlay */
+.ModalOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+/* Sets the style for the box the buttons and modal text will display in */
+.ModalBox {
+    background: white;
+    padding: 24px 28px;
+    border-radius: 12px;
+
+    width: 30vw;
+    min-width: 320px;
+    max-width: 500px;
+
+    max-height: 90vh;
+    overflow-y: auto;
+
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+    animation: fadeIn 0.2s ease;
+
+     clip-path: inset(0 round 12px);
+}
+
+/* Helps make the preview box wider and more legible */
+.ModalBox.preview-mode {
+    width: 80vw;
+    max-width: 1200px;
+}
+
+.ModalHeader {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+#modalTitle {
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+.DangerIcon {
+    color: #d32f2f;
+    font-size: 20px;
+}
+
+/* Style for modal header text */
+.ModalBox h3 {
+    margin: 0 0 10px 0;
+}
+
+/* Style for the modal paragraph text */
+.ModalBox p {
+    margin: 0 0 20px 0;
+    font-size: 14px;
+    color: #555;
+}
+
+/* Reusable defult modal style */
+.ModalBox.info {
+    border-top: 5px solid #f3f321;
+}
+
+/* Success modal style */
+.ModalBox.success {
+    border-top: 5px solid #4caf50;
+}
+
+/* Warning modal style */
+.ModalBox.warning {
+    border-top: 5px solid #ff9800;
+}
+
+/* Danger modal style */
+.ModalBox.danger {
+    border-top: 5px solid #d32f2f;
+}
+
+/* Alligns the modal actions buttons */
+.ModalActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+/* Style for cancel action button */
+.ModalCancel {
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background: #f5f5f5;
+    cursor: pointer;
+}
+
+/* Style for confirm action button */
+.ModalConfirm {
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: none;
+    /* Is pink to show if there is a major issue, if things are working you will never see it */
+    background: #d32f8f;
+    color: white;
+    cursor: pointer;
+}
+
+/* Different versions of the ModalConfirm button depending on the type of modal popup */
+.ModalConfirm.info {
+    background: #b4b4b4;
+}
+
+.ModalConfirm.success {
+    background: #2ecc71;
+}
+
+.ModalConfirm.warning {
+    background: #f1c40f;
+}
+
+.ModalConfirm.danger {
+    background: #e74c3c;
+}
+
+/* Hover effect for info and warning popup modals */
+.ModalConfirm.info:hover {
+    background: #e0d96b;
+}
+
+.ModalConfirm.warning:hover {
+    background: #e6b80d;
+}
+
+/* Hover effect for success popup modals */
+.ModalConfirm.success:hover {
+    background: #27ae60;
+}
+
+/* Hover effect for modal confirmation button for danger popups */
+.ModalConfirm.danger:hover {
+    background: #b71c1c;
+}
+
+/* Makes the white space in the popup modals work */
+#modalMessage {
+    white-space: pre-line;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+/* Style for the textarea that users will type their memo  */
+.MemoInput {
+    width: 100%;
+    min-height: 140px;
+    resize: vertical;
+    padding: 10px;
+    margin-bottom: 18px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+    box-sizing: border-box;
+}
+
+/* Focus effect */
+.MemoInput:focus {
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+/* preview Container styling */
+#previewContainer {
+    /* max-height: 70vh; */
+    overflow-y: auto;
+}
+
+/* preview frame styling */
+#previewFrame {
+    width: 100%;
+    height: 70vh;
+    border: none;
+}
+
+
+/* Fade in effect! Very important for the modal box! */
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95);}
+    to {opacity: 1; transform: scale(1);}
+}
+
+/* ----------------- End of Documents Section Styles ----------------- */
+
+/* ----------------- Footer Section Styles ----------------- */
+.Footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+}
+
+.LeftFooter {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.CentralFooter {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.RightFooter {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Manages the logo image dimentions */
+.Logo img {
+    height: 65px;
+    width: auto;
+    object-fit: contain;
+    border: 2px solid #ddc113;
+    background: #f5f9ff;
+    transition: 0.25s ease;
+    
+    border-radius: 10px;
+    padding: 4px;
+}
+
+.Logo img:hover{
+    transform: scale(1.05);
+}
+
+/* [][][][][][][][][][][ AI ASSISTANCE STYLES  ][][][][][][][][][] */
+
+/* Manages the AI assistant button */
+.AIAssistanceBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: white;
+    color: black;
+    font-weight: 600;
+    font-size: 15px;
+    transition: all 0.25s ease;
+    border: 2px solid #000;
+    text-align: center;
+    cursor: pointer;
+}
+ 
+.AIAssistanceBtn:hover {
+    background-color: #d4d3cd;
+    transform: scale(1.05);
+}
+
+/* To maitinain the ai assitant content */
+#aiAssistant {
+    position: relative;
+    /* bottom: 20px; */
+    /* right: 20px; */
+    z-index: 10000;
+}
+/* To keep things hidden until the button is clicked */
+#aiAssistant .ai-content {
+    /* display: none; */
+    position: absolute;
+    bottom: 0px;
+    right: 0;
+    width: 300px;
+    height: 400px;
+    background-color: white;
+    border-radius: 14px;
+    padding: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    z-index: 1001;
+    overflow: hidden;
+    overflow-y: auto;
+    opacity: 0;
+    transform: scale(0.95);
+    transform-origin: bottom right;
+    pointer-events: none;
+    transition: all 0.2s ease;
+}
+
+#aiAssistant .ai-content.open {
+    /* display: block; */
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+}
+
+#aiAssistant .ai-content h3 {
+    margin-bottom: 15px;
+    color: #ddc113;
+    text-align: center;
+}
+
+#aiAssistant .ai-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 15px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#aiAssistant .ai-content li.question {
+    background-color: #f5f9ff;
+    border: 2px solid #ddc113;
+    border-radius: 12px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+}
+
+#aiAssistant .ai-content li.question:hover {
+    background-color: #fff8dc;
+    transform: translateY(-2px);
+}
+
+#aiAssistant .answer-box {
+    background-color: #fffbea;
+    border: 2px solid #ddc113;
+    padding: 10px 15px;
+    border-radius: 10px;
+    min-height: 50px;
+    color: #333;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+/* [][][][][][][][ End of AI asisitnt styles */
+
+/* ----------------- End of Footer Section Styles ----------------- */
+
+
+/* ----------------- Start of Back Button styles ----------------- */
+
+/* Back button style */
+.BackButton {
+    display: inline-block;
+    padding: 10px 24px;
+    border-radius: 999px;
+    background-color: #ddc113;
+    color: white;
+    font-weight: 600;
+    font-size: 15px;
+    transition: all 0.25s ease;
+    cursor: pointer;
+}
+
+/* Hover effect for the back button */
+.BackButton:hover {
+    background-color: #c5ab11;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
+}
+
+/* Effect when the back button is pressed */
+.BackButton:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+/* ----------------- End of Back Button Styles -----------------*/
+
+/* ----------------- Responsive Page Styles ----------------- */
+
+    /* Sets the max width for every section */
+    @media (max-width: 1024px) {
+
+    /* Adds an optional scroll if the page gets too small */
+    body {
+        overflow-x: auto;
+    }
+
+    .HeaderBar {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-template-areas: 
+        "logo title"
+        "nav nav";
+        gap: 10px;
+    }
+
+    .LeftHeader {
+        grid-area: logo;
+    }
+ 
+    .PageTitle {
+        grid-area: title;
+        text-align: right;
+    }
+
+    .RightHeader {
+        grid-area: nav;
+        justify-self: center;
+    }  
+
+  
+    .top-buttons {
+        gap: 10px;
+    }
+
+    /* Makes the top buttons fit nicer */
+    .top-buttons button {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+    
+
+    .DocumentsSection {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    /* Ensures the footer does not break allignment when the page is made small  */
+    .Footer {
+        flex-wrap: nowrap;
+        text-align: right;
+        gap: 10px;
+    }
+
+    .SearchBarContainer, .UploadDocumentsContainer {
+        max-width: 600px;
+        justify-content: center;
+        flex: 1 1 300px;
+        z-index: 2000;
+    }
+
+    #SearchBar {
+        flex: 1;
+        min-width: 150px;
+    }    
+}
+
+/* Global accessibility settings */
+
+body.text-small {
+    font-size: 14px;
+}
+
+body.text-medium {
+    font-size: 16px;
+}
+
+body.text-large {
+    font-size: 20px;
+}
+
+body.text-small h1,
+body.text-small h2,
+body.text-small h3,
+body.text-small p,
+body.text-small span,
+body.text-small a,
+body.text-small label,
+body.text-small input,
+body.text-small button {
+    font-size: 14px !important;
+}
+
+body.text-medium h1,
+body.text-medium h2,
+body.text-medium h3,
+body.text-medium p,
+body.text-medium span,
+body.text-medium a,
+body.text-medium label,
+body.text-medium input,
+body.text-medium button {
+    font-size: 16px !important;
+}
+
+body.text-large h1,
+body.text-large h2,
+body.text-large h3,
+body.text-large p,
+body.text-large span,
+body.text-large a,
+body.text-large label,
+body.text-large input,
+body.text-large button {
+    font-size: 20px !important;
+}
+
+body.colourblind {
+    background: #ffffff !important;
+}
+
+body.colourblind .container,
+body.colourblind .HeaderBar,
+body.colourblind .Footer,
+body.colourblind .SavedDocuments,
+body.colourblind .SearchBarContainer,
+body.colourblind .UploadDocumentsContainer,
+body.colourblind .FolderSection,
+body.colourblind .DocumentItem,
+body.colourblind .ModalBox {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border-color: #000000 !important;
+}
+
+body.colourblind button,
+body.colourblind .ChooseFilesBtn,
+body.colourblind .UploadBtn,
+body.colourblind .CreateFolderBtn,
+body.colourblind .RecycleBin,
+body.colourblind .BackButton {
+    background: #000000 !important;
+    color: #ffffff !important;
+}
+
+body.simple-layout .container {
+    max-width: 1100px;
+}
+
+body.simple-layout .HeaderBar,
+body.simple-layout .Footer,
+body.simple-layout .SavedDocumentControls {
+    gap: 20px;
+}

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<!-- Defines the document type and ensures the browser renders the page using HTML5 standards. -->
+
+<html lang="en">
+<!-- Root element of the webpage. The language is set to English for accessibility and browser support. -->
+
+<head>
+
+    <meta charset="UTF-8">
+    <!-- Specifies UTF-8 character encoding to support a wide range of text characters and symbols. -->
+
+    <title>Document Parser</title>
+    <!-- Title displayed in the browser tab and used for page identification. -->
+
+    <!-- Imports Font Awesome icon library to provide visual icons throughout the user interface. -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Links the custom stylesheet responsible for the layout and appearance of the page. -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sid_style.css') }}">
+
+</head>
+
+<body>
+
+<!-- Main container that holds all visible content on the page. -->
+<div class="container">
+
+    <!-- Header section containing the application logo and navigation controls. -->
+    <header class="header">
+
+        <!-- Website logo that also functions as a shortcut back to the homepage. -->
+        <h1 class="site-logo">
+            <a href="/">
+                <img src="{{ url_for('static', filename='img/Document_Parser_Logo.jpeg') }}" alt="Logo">
+            </a>
+        </h1>
+
+        <!-- Navigation buttons allowing access to key areas of the system. -->
+        <div class="top-buttons">
+
+            <!-- Redirects the user to the account management page. -->
+            <button class="nav" data-page="/accounts" id="accountButton">
+                <i class="fa-solid fa-user icon"></i>
+                <span id="navAccount">Account</span>
+            </button>
+
+            <!-- Opens the settings page where users can customise application preferences. -->
+            <button class="nav" data-page="/settings" id="settingsButton">
+                <i class="fa-solid fa-gear icon"></i>
+                <span id="navSettings">Settings</span>
+            </button>
+
+            <!-- Returns the user to the main dashboard or homepage. -->
+            <button class="nav" data-page="/sid" id="mainMenuButton">
+                <i class="fa-solid fa-house icon"></i>
+                <span id="navMain">Main Menu</span>
+            </button>
+
+        </div>
+    </header>
+
+    <!-- Main content area containing document processing features and support tools. -->
+    <div class="main-content">
+
+        <!-- Left section containing the primary document management functionality. -->
+        <div class="left-section">
+
+            <!-- Interactive button that opens a popup window for document upload and parsing. -->
+            <div class="parse-box" onclick="openPopup()" id="parseButton">
+                <div class="extra-layer">
+                    <i class="fa-solid fa-envelope icon"></i>
+                    <span>Parse Document</span>
+                </div>
+            </div>
+
+            <!-- Background overlay displayed when the upload popup is active. -->
+            <div class="popupBackground" id="popupBack">
+
+                <!-- Popup window containing the document submission form. -->
+                <div class="popupbox" id="popup">
+
+                    <!-- Closes the popup and returns the user to the main interface. -->
+                    <button onclick="closePopup()" id="closebuttn">X</button>
+
+                    <br>
+
+                    <!-- Form used to submit text and image files for processing by the document parser. -->
+                    <form action="/parse" method="POST" enctype="multipart/form-data">
+
+                        <!-- Optional text input field for additional user-provided information. -->
+                        <input type="text" name="text">
+
+                        <!-- File upload field restricted to PNG and JPEG image formats. -->
+                        <input type="file" name="file" id="select" accept="image/png, image/jpeg">
+
+                        <br>
+                        <br>
+
+                        <!-- Submits the selected file and associated data to the server. -->
+                        <button type="submit" id="UploadButton">
+                            Upload file
+                        </button>
+
+                    </form>
+
+                </div>
+            </div>
+
+            <!-- Lower section providing quick access to saved documents and user options. -->
+            <div class="bottom-row">
+
+                <!-- Navigates to the page containing previously saved documents. -->
+                <div class="saved-box nav" data-page="/savedDocumentsPage" id="savedDocsButton">
+                    <i class="fa-solid fa-folder icon"></i>
+                    <span>Saved Documents</span>
+                </div>
+
+                <!-- Collection of additional shortcut buttons. -->
+                <div class="right-small-boxes">
+
+                    <!-- Shortcut to the user's account management page. -->
+                    <div class="small-box nav" data-page="/accounts">
+                        <i class="fa-solid fa-user icon"></i>
+                        <span id="btnGoAccount">Account</span>
+                    </div>
+
+                    <!-- Opens the language selection page for localisation preferences. -->
+                    <div class="small-box" onclick="location.href='/language'">
+                        <i class="fa-solid fa-globe icon"></i>
+                        <span id="btnGoLanguage">Language</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Section linking users to customer feedback and review information. -->
+        <div class="reviews nav" data-page="/reviews">
+            <i class="fa-solid fa-star icon"></i>
+            <span>Customer Reviews</span>
+        </div>
+
+        <!-- Lightweight help assistant designed to guide users through common tasks. -->
+        <div class="ai-assistant" id="aiAssistant">
+
+            <!-- Label displayed when the help panel is collapsed. -->
+            <span class="ai-icon">Quick Help</span>
+
+            <!-- Help content that can be expanded to display support options. -->
+            <div class="ai-content" style="display: none;">
+
+                <!-- Help centre heading. -->
+                <h3>Help Center</h3>
+
+                <!-- Frequently asked questions available for quick user assistance. -->
+                <ul>
+                    <li class="question">How to parse a document?</li>
+                    <li class="question">Where are saved files?</li>
+                    <li class="question">Change language?</li>
+                    <li class="question">Update account info?</li>
+                </ul>
+
+                <!-- Area where responses to selected help questions are displayed. -->
+                <div class="answer-box">
+                    Please choose an option...
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Applies user-defined settings such as theme, language, or preferences. -->
+<script src="{{ url_for('static', filename='js/applySettings.js') }}"></script>
+
+<!-- Handles page interactions, navigation, popup behaviour, and help assistant functionality. -->
+<script src="{{ url_for('static', filename='js/sid_script.js') }}"></script>
+
+</body>
+</html>

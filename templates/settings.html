@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Settings</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <header class="header">
+
+        <h1 class="site-logo" id="titleSettings">
+            Settings
+        </h1>
+
+        <div class="top-buttons">
+
+            <button class="nav" onclick="location.href='/sid'">
+                <span class="fa-solid fa-arrow-left icon"></span>
+                <span id="backBtn">Back</span>
+            </button>
+
+            <button class="nav" onclick="location.href='/accounts'" id="accountButton">
+                <span class="fa-solid fa-user icon"></span>
+                <span id="navAccount">Account</span>
+            </button>
+
+            <button class="nav" onclick="location.href='/settings'" id="settingsButton">
+                <span class="fa-solid fa-gear icon"></span>
+                <span id="navSettings">Settings</span>
+            </button>
+
+            <button class="nav" onclick="location.href='/sid'" id="mainMenuButton">
+                <span class="fa-solid fa-house icon"></span>
+                <span id="navMain">Main Menu</span>
+            </button>
+
+        </div>
+
+    </header>
+
+    <div class="main-content">
+
+        <div class="left-section">
+
+            <div class="parse-box">
+                <i class="fa-solid fa-sliders icon"></i>
+                Accessibility & Preferences
+            </div>
+
+            <div class="bottom-row">
+
+                <div class="saved-box" style="width:100%; height:auto; padding:30px; display:block;">
+
+                    <!-- Text Size -->
+                    <div class="row" style="display:flex; align-items:center; margin-bottom:20px;">
+
+                        <span class="label"
+                              id="labelTextSize"
+                              style="min-width:140px; margin-right:20px;">
+
+                            <i class="fa-solid fa-text-height"></i>
+                            Text Size
+
+                        </span>
+
+                        <div class="controls">
+                            <button type="button" id="smallText">Small</button>
+                            <button type="button" id="mediumText">Medium</button>
+                            <button type="button" id="largeText">Large</button>
+                        </div>
+
+                    </div>
+
+                    <!-- Language -->
+                    <div class="row" style="display:flex; align-items:flex-start; margin-bottom:20px;">
+
+                        <span class="label"
+                              id="labelLanguage"
+                              style="min-width:140px; margin-right:20px;">
+
+                            <i class="fa-solid fa-globe"></i>
+                            Language
+
+                        </span>
+
+                        <div class="langPicker" style="flex:1;">
+
+                            <button type="button"
+                                    id="langBtn"
+                                    class="small-box"
+                                    style="width:100%; justify-content:flex-start; padding-left:15px;">
+
+                                <span id="langBtnText">English</span>
+
+                            </button>
+
+                            <div id="langDropdown" class="langDropdown hidden">
+
+                                <input
+                                    id="langSearch"
+                                    class="langSearch"
+                                    type="text"
+                                    placeholder="Search language..."
+                                >
+
+                                <div id="langList" class="langList"></div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Colour Mode -->
+                    <div class="row" style="display:flex; align-items:center; margin-bottom:20px;">
+
+                        <span class="label"
+                              id="labelColourMode"
+                              style="min-width:140px; margin-right:20px;">
+
+                            <i class="fa-solid fa-eye"></i>
+                            Colour Mode
+
+                        </span>
+
+                        <label class="toggleWrap">
+                            <input type="checkbox" id="colourblindToggle">
+                            <span class="toggleText" id="txtColourblind">
+                                Colourblind Mode
+                            </span>
+                        </label>
+
+                    </div>
+
+                    <!-- Layout -->
+                    <div class="row" style="display:flex; align-items:center; margin-bottom:20px;">
+
+                        <span class="label"
+                              id="labelLayout"
+                              style="min-width:140px; margin-right:20px;">
+
+                            <i class="fa-solid fa-table-columns"></i>
+                            Layout
+
+                        </span>
+
+                        <label class="toggleWrap">
+                            <input type="checkbox" id="simpleLayoutToggle">
+                            <span class="toggleText" id="txtSimpleLayout">
+                                Simplified Layout
+                            </span>
+                        </label>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="reviews">
+            <i class="fa-solid fa-gear icon"></i>
+            Settings Panel
+        </div>
+
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/applySettings.js') }}"></script>
+<script src="{{ url_for('static', filename='js/settings.js') }}"></script>
+
+</body>
+</html>

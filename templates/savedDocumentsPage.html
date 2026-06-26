@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+        <!-- Connects to css stylesheet -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/savedDocuementsPage.css') }}" />
+        <title>Saved Documents</title>
+        <!-- link for magnifying glass from "Font Awesome" -->
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    </head>
+
+    <!-- add class="container" later if it works for page consitancy, check both in body and in new big div -->
+    <body>
+
+        <!-- This section will contain the header bar -->
+        <section class="HeaderBar">
+            <div class="LeftHeader">
+
+                <!-- logo that acts as a home page button -->
+                <div class="Logo">
+                    <!-- Logo for the page (Taken from Sids reviews page)-->
+                    <a href="/sid">
+                        <!-- Displays the system logo -->
+                        <img src="static/img/Document_Parser_Logo.jpeg" alt="Logo" title="This is the logo for the page, click to go back to homepage">
+                    </a>
+                </div>
+            </div>
+
+            <div class="PageTitle">
+                    <h1>Saved Documents</h1>
+                 </div>
+
+            <!-- Manages the right side of the header -->
+            <div class="RightHeader">
+                <!-- (Code from other webpages) Navigation buttons to other parts of the website -->
+                <div class="top-buttons">
+                        <!-- Back button -->
+                        <button onclick="window.location.href='/sid'" title="Go back to the main menu">
+                            <span class="fa-solid fa-arrow-left icon"></span><span id="backBtn">Back</span>
+                        </button>
+
+                        <!-- Account page button -->
+                        <button onclick="window.location.href='/accounts'" title="Go to your account page">
+                            <span class="fa-solid fa-user icon"></span><span id="navAccount">Account</span>
+                        </button>
+
+                        <!-- Settings page button -->
+                        <button onclick="window.location.href='/settings'" title="Go to your settings page">
+                            <span class="fa-solid fa-gear icon"></span><span id="navSettings">Settings</span>
+                        </button>
+
+                        <!-- Home page/main menu button -->
+                        <button onclick="window.location.href='/sid'" title="Go to the main menu">
+                            <span class="fa-solid fa-house icon"></span><span id="navMain">Main Menu</span>
+                        </button>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- This section will dislay everything related to the saved documents -->
+        <section class="DocumentsSection">    
+            <!-- This div will display all of the saved documents -->
+            <div class="SavedDocuments">
+                <!-- Div for managing the allignment of the search and filter controls -->
+                <div class="SavedDocumentControls">
+
+                        <!-- Contains the Search Bar -->
+                        <div class="SearchBarContainer">
+
+                        <!-- Search Bar -->
+                        <input type="text" id="SearchBar" placeholder="Search Documents" title="Type in the name of the document(s) you are looking for">
+                        <button id="SearchButton" type="button" title="Click here to search.">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+
+                        <!-- Filter Button -->
+                        <button id="FilterButton" class="FilterButton" type="button" title="Select one or multiple filter options to limit your search results.">
+                            <i class="fa-solid fa-filter"></i>
+                        </button>
+
+                        <!-- Dropdown Panel for Filter Btn Options -->
+                        <div id="FilterDropdown" class="FilterDropdown" title="Opens the filter options menu so you can filter your sesrches">
+                            <!-- Extra div to make everything display in a column -->
+                            <div class="FilterColumns">
+                                <!-- Breaks up the filter options -->
+                                <div class="FilterGroup">
+                                    <!-- Adds a title to the group -->
+                                    <div class="FilterTitle">Text-Based</div>
+                                    <label><input type="checkbox" value="docx"> Word</label>
+                                    <label><input type="checkbox" value="PDF"> PDF</label>
+                                    <label><input type="checkbox" value="txt"> Notepad</label>
+                                </div>
+
+                                <!-- Breaks up the filter options -->
+                                <div class="FilterGroup">
+                                    <!-- Adds a title to the group -->
+                                    <div class="FilterTitle">Data & Presentations</div>
+                                    <label><input type="checkbox" value="pptx"> PowerPoint</label>
+                                    <label><input type="checkbox" value="xlsx"> Excel</label>
+                                </div>
+
+                                <!-- Breaks up the filter options -->
+                                <div class="FilterGroup">
+                                    <!-- Adds a title to the group -->
+                                    <div class="FilterTitle">Emails & Images</div>
+                                    <label><input type="checkbox" value="eml"> EML</label>
+                                    <label><input type="checkbox" value="jpeg"> JPEG</label>
+                                    <label><input type="checkbox" value="jpg"> JPG</label>
+                                    <label><input type="checkbox" value="png"> PNG</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Div for uploading Documents on the saved documents page -->
+                    <div class="UploadDocumentsContainer">
+                        <span class="UploadPrompt">Select files to upload</span>
+
+                        <input type="file" id="SelectFileSavedDocPage" name="UploadFile" accept=".pdf, .doc, .docx, .txt, .ppt, .pptx, .xls, .xlsx, .eml, .png, .jpg, .jpeg" multiple hidden>
+
+                        <label for="SelectFileSavedDocPage" class="ChooseFilesBtn" id="ChooseFiles" title="Select one or multiple files to upload to the current folder.">Choose Files</label>
+
+                        <span id="fileNameDisplay">No files selected</span>
+
+                        <button id="UploadButtonSavedDocPage" class="UploadBtn" type="button" title="Click here to upload a new document from this page.">Upload</button>
+                    </div>
+                </div>
+
+                <!-- Handles both the folder area and the files area -->
+                <div class="SavedStuff">
+                    <!-- Folder Section -->
+                    <div class="FolderSection">
+                        <!-- Topmost create folder button -->
+                        <div class="FolderTop">
+                            <button class="CreateFolderBtn" title="Click to create a new folder.">+ Create a New Folder</button>
+                        </div>
+
+                        <!-- Middle - Folder List -->
+                        <div class="FolderList">
+                            <!-- JS will create the folders here (Like with the document cards) -->
+                        </div>
+
+                        <!-- Bottom most recyicle bin -->
+                        <div class="FolderBottom">
+                            <div id="RecycleBinBtn" class="RecycleBin" title="Click to access the recyle bin">
+                                <i class="fa-solid fa-trash-can"></i>
+                                <span>Recycle Bin</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scrollable documents list -->
+                    <div class="DocumentList">
+                        <!-- No content added here, it is added in JS file savedDocumentsPage.js -->
+                    </div>
+                </div>
+
+                <!-- Display Modal (Appears when any file option btn is pressed) -->
+                 <div id="confirmModal" class="ModalOverlay hidden" >
+                    <div id="modalBox" class="ModalBox">
+                        <div class="ModalHeader">
+                            <i id="modalIcon" class="fa-solid fa-circle-info"></i>
+                            <h3 id="modalTitle">Title</h3>
+                        </div>
+
+                        <p id="modalMessage">Temp Message - Real one will appear here</p>
+
+                        <!-- Text area for the memo popup, this will only be used then -->
+                        <textarea id="memoInput" class="MemoInput hidden" placeholder="Write your memo here"></textarea>
+
+                        <!-- Hidden div to allow for previews of PDF's and Images, wont work for other files -->
+                        <div id="previewContainer" class="hidden">
+                            <iframe
+                                id="previewFrame"
+                                width="100%"
+                                height="600"
+                                style="border:none;">
+                            </iframe>
+
+                            <img
+                                id="previewImage"
+                                class="hidden"
+                                style="max-width:100%; max-height:500px;">
+
+                        </div>
+
+                        <div class="ModalActions">
+                            <button id="modalCancel" class="ModalCancel">Cancel</button>
+                            <button id="modalConfirm" class="ModalConfirm">OK</button>
+                        </div>
+                    </div>
+                 </div>
+            </div>
+        </section>
+
+        <section class="Footer">
+            <!-- Div class for the left side of the footer -->
+            <div class="LeftFooter">
+                <!-- Home Page Btn for  footer -->
+                <div class="homepageBtn" onclick="window.location.href='/sid'">
+                    <!-- Check HREF when home pages are uploaded -->
+                    <a class="BackButton" title="Return to the Homepage.">Back</a>
+                </div>
+            </div>
+
+            <!-- Div class for the center of the footer -->
+            <div class="CentralFooter">
+                <!-- Copyright text -->
+                <p>Copyright © 2026 DocuParse. All rights reserved.</p>
+            </div>
+
+            <!-- Div class for the right side of the footer -->
+            <div class="RightFooter" id="aiAssistant">
+                <!-- AI Asistant button -->
+                <button class="AIAssistanceBtn" title="Open the AI Assistant to answer any questions you have about the webpage.">Quick Help</button>
+                <!-- Div for displaying the Ai assitant content -->
+                <div class="ai-content">
+                    <h3>Help Center</h3>
+                    <ul>
+                        <li class="question" data-answer="upload">How do I upload a file to this webpage?</li>
+                        <li class="question" data-answer="favorite">How do I favorite a file or folder?</li>
+                        <li class="question" data-answer="delete">How do I delete a file or folder?</li>
+                        <li class="question" data-answer="rename">How do I rename a file or folder?</li>
+                        <!-- Add more questions here as things improve casey!!!! -->
+                    </ul>
+                    <!-- Some text to instruct the user, will be replaced when the user presses a question -->
+                    <div class="answer-box">Please choose an option...</div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- Global accessibility and language settings -->
+        <script src="{{ url_for('static', filename='js/applySettings.js') }}"></script>
+
+        <!-- Saved Documents page JavaScript -->
+        <script src="{{ url_for('static', filename='js/savedDocuementsPage.js') }}" defer></script>
+
+    </body>
+
+</html>

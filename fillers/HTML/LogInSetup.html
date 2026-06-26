@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DocuParse login</title>
+        <meta charset="UTF-8">
+        <!-- importing the stylesheet for this webpage so it looks nice-->
+        <link rel="stylesheet" href="{{ url_for('static', filename='LogInStyle.css') }}">
+        <script src="{{ url_for('static', filename='logInManager') }}" defer></script>
+    </head>
+    <body>
+
+        <h1 class="headers">Welcome to DocuParse</h1>
+        <!--User directions-->
+        <h2 class="headers">Sign In</h2>
+
+        <label for="username" class="labels">Username</label>
+        <input type="text" id="username" name="usernameBox"><br><br>
+
+        <label for="password" class="labels">Password</label>
+        <input type="password" id="password" name="passwordBox"></input><br><br>
+
+        <button class="logInButton" id="logInButton">LogIn</button>
+    </body>
+</html>

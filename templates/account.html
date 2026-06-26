@@ -1,0 +1,174 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Account</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <header class="header">
+
+        <h1 class="site-logo" id="titleAccount">
+            Account
+        </h1>
+
+        <div class="top-buttons">
+
+            <button class="nav" onclick="location.href='/sid'">
+                <i class="fa-solid fa-arrow-left icon"></i>
+                <span id="backBtn">Back</span>
+            </button>
+
+            <button class="nav" onclick="location.href='/accounts'" id="accountButton">
+                <i class="fa-solid fa-user icon"></i>
+                <span id="navAccount">Account</span>
+            </button>
+
+            <button class="nav" onclick="location.href='/settings'" id="settingsButton">
+                <i class="fa-solid fa-gear icon"></i>
+                <span id="navSettings">Settings</span>
+            </button>
+
+            <button class="nav" onclick="location.href='/sid'" id="mainMenuButton">
+                <i class="fa-solid fa-house icon"></i>
+                <span id="navMain">Main Menu</span>
+            </button>
+
+        </div>
+
+    </header>
+
+    <div class="main-content">
+
+        <div class="left-section">
+
+            <div class="parse-box">
+                <i class="fa-solid fa-user icon"></i>
+                Account Details
+            </div>
+
+            <div class="bottom-row">
+
+                <div class="saved-box" style="
+                    width: 100%;
+                    height: auto;
+                    padding: 30px;
+                    display: block;
+                ">
+
+                    <div class="row" style="
+                        display:flex;
+                        align-items:center;
+                        margin-bottom:20px;
+                    ">
+                        <span class="label" id="lblEmail" style="
+                            min-width:140px;
+                            margin-right:20px;
+                        ">
+                            Email
+                        </span>
+
+                        <input
+                            type="text"
+                            placeholder="Enter email"
+                            style="flex:1;"
+                        >
+                    </div>
+
+                    <div class="row" style="
+                        display:flex;
+                        align-items:center;
+                        margin-bottom:20px;
+                    ">
+                        <span class="label" id="lblAddress" style="
+                            min-width:140px;
+                            margin-right:20px;
+                        ">
+                            Address
+                        </span>
+
+                        <input
+                            type="text"
+                            placeholder="Enter address"
+                            style="flex:1;"
+                        >
+                    </div>
+
+                    <div class="row" style="
+                        display:flex;
+                        align-items:center;
+                        margin-bottom:20px;
+                    ">
+                        <span class="label" id="lblPhone" style="
+                            min-width:140px;
+                            margin-right:20px;
+                        ">
+                            Phone
+                        </span>
+
+                        <input
+                            id="phone"
+                            type="text"
+                            placeholder="Enter phone number"
+                            maxlength="11"
+                            style="flex:1;"
+                        >
+                    </div>
+
+                    <div class="row" style="
+                        display:flex;
+                        align-items:center;
+                        margin-bottom:20px;
+                    ">
+                        <span class="label" id="lblPassword" style="
+                            min-width:140px;
+                            margin-right:20px;
+                        ">
+                            Password
+                        </span>
+
+                        <input
+                            type="password"
+                            placeholder="Change password"
+                            style="flex:1;"
+                        >
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="reviews">
+            <i class="fa-solid fa-shield-halved icon"></i>
+            Account Panel
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+const phone = document.getElementById("phone");
+
+if (phone) {
+    phone.addEventListener("input", function () {
+        this.value = this.value.replace(/[^0-9]/g, "");
+    });
+}
+</script>
+
+<script src="{{ url_for('static', filename='js/applySettings.js') }}"></script>
+
+</body>
+</html>
+```

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <h1 id="titleLogin">Login</h1>
+
+        <div class="top-buttons">
+
+            <button onclick="location.href='/accounts'">
+                <span id="navAccount">Account</span>
+            </button>
+
+            <button onclick="location.href='/settings'">
+                <span id="navSettings">Settings</span>
+            </button>
+
+            <button onclick="location.href='/sid'">
+                <span id="navMain">Main Menu</span>
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="parse-box" id="loginPage">
+
+        <div style="display:flex; flex-direction:column; gap:15px; width:300px;">
+
+            <input
+                type="text"
+                id="username"
+                placeholder="Enter username"
+                style="padding:12px; border-radius:8px; border:2px solid #ddc113;"
+            >
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Enter password"
+                style="padding:12px; border-radius:8px; border:2px solid #ddc113;"
+            >
+
+            <button
+                type="submit"
+                id="loginButton"
+                style="
+                    padding:12px;
+                    border:none;
+                    background:#ffffff;
+                    color:#ddc113;
+                    font-weight:bold;
+                    border-radius:8px;
+                    cursor:pointer;
+                ">
+                Login
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div id="confirmModal" class="ModalOverlay hidden">
+    <div id="modalBox" class="ModalBox">
+
+        <div class="ModalHeader">
+            <h3 id="modalTitle">Title</h3>
+        </div>
+
+        <p id="modalMessage">
+            Temp Message - Real one will appear here
+        </p>
+
+        <div class="ModalActions">
+            <button id="modalConfirm" class="ModalConfirm">
+                OK
+            </button>
+        </div>
+
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/applySettings.js') }}"></script>
+<script src="{{ url_for('static', filename='js/login.js') }}"></script>
+
+</body>
+</html>
